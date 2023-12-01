@@ -1,0 +1,74 @@
+155. Min Stack
+
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+class MinStack {
+    Stack<Integer> s;
+    Stack<Integer> minStack;
+
+    public MinStack() {
+        s = new Stack<Integer>();
+        minStack = new Stack<Integer>();
+    }
+    
+    public void push(int val) {
+        s.push(val);
+        if(minStack.isEmpty() || val <= minStack.peek()) {
+            minStack.push(val);
+        }
+    }
+    
+    public void pop() {
+        int x = s.pop();
+        if(minStack.peek() == x) {
+            minStack.pop();
+        }
+    }
+    
+    public int top() {
+        return s.peek();
+    }
+    
+    public int getMin() {
+        return minStack.peek();
+    }
+}
+
+1381. Design a Stack With Increment Operation
+
+Design a stack that supports increment operations on its elements.
+
+class CustomStack {
+    int[] data;
+    int ptr=0;
+    int max;
+    public CustomStack(int maxSize) {
+        this.data =new int[maxSize];
+        this.max=maxSize;
+    }
+    
+    public void push(int x) {
+        if(ptr==data.length) return;
+        data[ptr++]=x;
+    }
+    
+    public int pop() {
+        if(ptr==0){
+            return -1;
+        }
+        return data[--ptr];
+    }
+    
+    public void increment(int k, int val) {
+        if(k>ptr){
+            for(int i=0 ;i<max ; i++){
+                data[i]=data[i]+val;
+            }
+        }else{
+            for(int i=0; i<k ;i++){
+                data[i]=data[i]+val;
+            }
+        }
+    }
+}
+
